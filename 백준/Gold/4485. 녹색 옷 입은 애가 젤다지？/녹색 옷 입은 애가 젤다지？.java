@@ -1,97 +1,93 @@
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
-import java.util.Comparator;
+import java.util.Arrays;
 import java.util.PriorityQueue;
 import java.util.StringTokenizer;
- 
+
+class Node implements Comparable<Node> {
+	public Node(int x, int y, int w) {
+		super();
+		this.x = x;
+		this.y = y;
+		this.w = w;
+	}
+
+	int x;
+	int y;
+	int w;
+
+	@Override
+	public int compareTo(Node o) {
+		// TODO Auto-generated method stub
+		return this.w - o.w;
+	}
+
+}
+
 public class Main {
- 
-    static int N, sum;
-    static int[][] map,dist;
-    static boolean[][] visited;
-    static int[] dc = {-1,1,0,0};
-    static int[] dr = {0,0,-1,1};
- 
-    static class Point {
-        int c;
-        int r;
-        int w;
-        public Point(int c, int r, int w) {
-            this.c = c;
-            this.r = r;
-            this.w = w;
-        }
-    }
- 
-    public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        StringTokenizer st;
-        StringBuilder sb = new StringBuilder();
-        int T = 0;
-         
-        while(true) {
-        	T++;
-            N = Integer.parseInt(br.readLine());
-             
-            if(N==0) {
-            	break;
-            }
-            map = new int[N][N];
-            dist = new int[N][N];
-            visited = new boolean[N][N];
-            sum = 0;
-            for(int i = 0; i<N; i++) {
-            	st = new StringTokenizer(br.readLine());
-                for(int j = 0; j<N; j++) {
-                    map[i][j] = Integer.parseInt(st.nextToken());
-                    dist[i][j] = 200000000;
-                }
-            }
-            solve();
-            sb.append("Problem "+ T+": ").append(dist[N-1][N-1]).append("\n");
-        }
-        System.out.println(sb); 
-    }
-     
-    public static void solve() {
-        PriorityQueue<Point> queue = new PriorityQueue<>(new Comparator<Point>() {
-            @Override
-            public int compare(Point o1, Point o2) {
-                return o1.w-o2.w;
-            }   
-        });
-         
-        queue.add(new Point(0,0,0));
-        visited[0][0] = true;
-        dist[0][0] = map[0][0];
-         
-        while(!queue.isEmpty()) {
-            Point now = queue.poll();
-            for(int i = 0; i<4; i++) {
-                int nc = now.c + dc[i]; 
-                int nr = now.r + dr[i];
-                 
-                if(nc < 0 || nr < 0 || nc >= N || nr >= N || visited[nc][nr]) {
-                    continue;
-                }   
-                 
-                if(dist[nc][nr] > dist[now.c][now.r] + map[nc][nr]) {
-                    dist[nc][nr] = dist[now.c][now.r] + map[nc][nr];
-                    visited[nc][nr] = true; 
-                    queue.add(new Point(nc, nr, dist[nc][nr]));
-                }
-            }
-        }               
-    }
-     
-    public static void print() {
-        for (int i = 0; i < map.length; i++) {
-            System.out.println();
-            for (int j = 0; j < map.length; j++) {
-                System.out.print(dist[i][j]+" ");
-            }
-             
-        }
-    }
+	static int arr[][];
+	static boolean check[][];
+	static int[] dr = { -1, 1, 0, 0 };
+	static int[] dc = { 0, 0, -1, 1 };
+	static int dist[][];
+	static int N;
+	static int INF = 200000000;
+
+	public static void main(String[] args) throws NumberFormatException, IOException {
+
+		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+		StringTokenizer st;
+		int tc = 0;
+
+		while (true) {
+			tc++;
+			N = Integer.parseInt(br.readLine());
+
+			if(N==0) {
+				break;
+			}
+			arr = new int[N][N];
+			check = new boolean[N][N];
+			dist = new int[N][N];
+			for (int i = 0; i < N; i++) {
+				st = new StringTokenizer(br.readLine());
+				for (int j = 0; j < N; j++) {
+					arr[i][j] = Integer.parseInt(st.nextToken());
+					dist[i][j] = INF;
+				}
+			}
+
+			bfs(new Node(0, 0, 0));
+
+			System.out.println("Problem " + tc + ": " + dist[N - 1][N - 1]);
+
+		}
+
+	}
+
+	static void bfs(Node start) {
+		PriorityQueue<Node> que = new PriorityQueue<>();
+
+		que.add(start);
+
+		dist[start.x][start.y] = arr[start.x][start.y];
+
+		while (!que.isEmpty()) {
+			Node now = que.poll();
+			check[now.x][now.y] = true;
+			for (int i = 0; i < 4; i++) {
+				int nr = now.x + dr[i];
+				int nc = now.y + dc[i];
+				if (nr < 0 || nc < 0 || nr >= N || nc >= N || check[nr][nc]) {
+					continue;
+				}
+				if (dist[nr][nc] > dist[now.x][now.y] + arr[nr][nc]) {
+					dist[nr][nc] = dist[now.x][now.y] + arr[nr][nc];
+					que.add(new Node(nr, nc, dist[nr][nc]));
+				}
+			}
+		}
+	}
+
 }
