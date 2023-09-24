@@ -84,6 +84,7 @@ public class Main {
 				for (Node next : graph.get(now.v)) {
 					if (dist[next.v] > dist[now.v] + next.w) {
 						dist[next.v] = dist[now.v] + next.w;
+						
 						queue.add(new Node(next.v, dist[next.v]));
 					}
 				}
