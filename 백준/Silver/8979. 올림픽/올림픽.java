@@ -70,7 +70,7 @@ public class Main {
 			if (tmpGold == nowContry.gold && tmpSilver == nowContry.silver && tmpBronze == nowContry.bronze) {
 				nowContry.ranking = tmpContry.ranking;
 			} else {
-				nowContry.ranking = tmpContry.ranking + 1;
+				nowContry.ranking = i + 1;
 			}
 		}
 
