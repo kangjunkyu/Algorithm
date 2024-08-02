@@ -24,7 +24,7 @@ public class Main {
 		}
 
 		checkTree(0, 0, N);
-//		System.out.println(sb);
+		System.out.println(sb);
 
 	}
 
@@ -45,12 +45,10 @@ public class Main {
 		}
 		if (check) {
 			sb.append(value);
-			System.out.print(value);
 			return;
 		}
 
 		sb.append("(");
-		System.out.print("(");
 
 		int newSize = size / 2;
 
@@ -60,7 +58,6 @@ public class Main {
 		checkTree(i + newSize, j + newSize, newSize);
 
 		sb.append(")");
-		System.out.print(")");
 
 	}
 }
