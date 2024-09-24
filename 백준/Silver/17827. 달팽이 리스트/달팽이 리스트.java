@@ -9,7 +9,7 @@ public class Main {
 	        StringTokenizer st = new StringTokenizer(br.readLine());
 	        int N = Integer.parseInt(st.nextToken());
 	        int M = Integer.parseInt(st.nextToken());
-	        int V = Integer.parseInt(st.nextToken());
+	        int V = Integer.parseInt(st.nextToken())-1;
 	        int[] arr = new int[N + 1];
 	        st = new StringTokenizer(br.readLine());
 	        for (int i = 1; i <= N; i++) {
@@ -22,11 +22,11 @@ public class Main {
 	            if (num <= N) {
 	                sb.append(arr[num]).append("\n");
 	            } else {
-	                int tmp = (num - (V-1)) % (N - (V-1));
+	                int tmp = (num - (V)) % (N - (V));
 	                if (tmp == 0) {
 	                    sb.append(arr[N]).append("\n");
 	                } else {
-	                    sb.append(arr[tmp + (V-1)]).append("\n");
+	                    sb.append(arr[tmp + (V)]).append("\n");
 	                }
 	            }
 	        }
