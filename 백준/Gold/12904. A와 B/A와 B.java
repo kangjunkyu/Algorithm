@@ -13,8 +13,8 @@ public class Main {
 		
 		//오래걸렸다.. 이거 T를 기준으로 잡아야 풀 수 있던 문제였다...
 		while(S.length() < T.length()) {
-			char lastIndex = T.charAt(T.length()-1);
-			if(lastIndex == 'A') {
+//			char lastIndex = T.charAt(T.length()-1);
+			if(T.charAt(T.length()-1) == 'A') {
 				T = T.substring(0, T.length()-1);
 			}else {
 				T = T.substring(0, T.length()-1);
