@@ -1,0 +1,2 @@
+-- 코드를 입력하세요
+SELECT ugb.TITLE, ugb.BOARD_ID, ugr.REPLY_ID, ugr.WRITER_ID, ugr.CONTENTS, date_format(ugr.created_date, '%Y-%m-%d') as CREATED_DATE from used_goods_board ugb inner join used_goods_reply ugr on ugb.board_id = ugr.board_id where substr(ugb.created_date, 1, 7) = '2022-10' order by ugr.created_date asc, ugb.title asc
