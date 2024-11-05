@@ -19,19 +19,20 @@ public class Main {
 		}
 		int time = 0; 
 		int bw=0;
-		Queue<Integer> q = new LinkedList<Integer>();
+		Queue<Integer> que = new LinkedList<Integer>();
 		for(int i =0; i<w ; i++) {
-			q.add(0);
+			que.add(0);
 		}
-		while(!q.isEmpty()) {
+		while(!que.isEmpty()) {
 			time++;
-			bw-=q.poll();
+			bw-=que.poll();
 			if(!truck.isEmpty()) {
 				if(truck.peek()+bw<=L) {
-					bw+=truck.peek();
-					q.offer(truck.poll());
+					int tep = truck.poll();
+					bw+=tep;
+					que.offer(tep);
 				}else {
-					q.offer(0);
+					que.offer(0);
 				}
 			}
 		}
