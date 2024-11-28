@@ -34,7 +34,7 @@ public class Main {
 			}
 
 			for (int i = 1; i <= N; i++) {
-//				if(!cycle[i])
+				if(!cycle[i])
 				dfs(i);
 			}
 			
