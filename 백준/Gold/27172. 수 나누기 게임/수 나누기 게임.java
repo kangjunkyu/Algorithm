@@ -7,21 +7,27 @@ public class Main {
 	public static void main(String[] args) throws NumberFormatException, IOException {
 		BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
 		StringTokenizer st;
+		StringBuilder sb = new StringBuilder();
 
 		int N = Integer.parseInt(br.readLine());
 
 		int max = 1000001;
 		int[] card = new int[N];
-		boolean[] check = new boolean[max];
-		int[] score = new int[max];
 
 		st = new StringTokenizer(br.readLine());
 
 		for (int i = 0; i < N; i++) {
 			card[i] = Integer.parseInt(st.nextToken());
+			max = Math.max(max, card[i]);
+		}
+		
+		boolean[] check = new boolean[max];
+		int[] score = new int[max];
+		
+		for (int i = 0; i < N; i++) {			
 			check[card[i]] = true;
 		}
-
+		
 		for (int i : card) {
 			for (int j = i * 2; j < max; j += i) {
 				if(check[j]) {
@@ -31,7 +37,8 @@ public class Main {
 			}
 		}
 		for(int people : card) {
-			System.out.print(score[people] + " ");
+			sb.append(score[people]).append(" ");
 		}
+		System.out.println(sb);
 	}
 }
