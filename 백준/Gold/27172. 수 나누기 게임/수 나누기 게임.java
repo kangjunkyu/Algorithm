@@ -13,18 +13,14 @@ public class Main {
 
 		int max = 1000001;
 		int[] card = new int[N];
+		boolean[] check = new boolean[max];
+		int[] score = new int[max];
 
 		st = new StringTokenizer(br.readLine());
 
 		for (int i = 0; i < N; i++) {
 			card[i] = Integer.parseInt(st.nextToken());
 			max = Math.max(max, card[i]);
-		}
-		
-		boolean[] check = new boolean[max];
-		int[] score = new int[max];
-		
-		for (int i = 0; i < N; i++) {			
 			check[card[i]] = true;
 		}
 		
