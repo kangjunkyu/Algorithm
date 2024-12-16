@@ -1,9 +1,3 @@
 -- 코드를 작성해주세요
 
-select count(*) as FISH_COUNT
-    from fish_info
-    where fish_type in (
-        select fish_type
-            from fish_name_info
-            where fish_name IN ('BASS', 'SNAPPER')
-    )
+select count(*) as fish_count from Fish_info fi right join fish_name_info fni on fi.fish_type = fni.fish_type where fni.fish_name in ('BASS', 'SNAPPER');
