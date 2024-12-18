@@ -1,1 +1,1 @@
-# 귀여운 준규짱의 백준 허브입니다
+# Algorithm_solve
